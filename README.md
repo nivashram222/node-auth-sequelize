@@ -329,7 +329,7 @@ MIT
 
 ## 👨‍💻 Author
 
-Your Name
+Ramnivash
 
 ---
 
