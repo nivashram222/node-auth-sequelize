@@ -2,11 +2,13 @@ const router = require("express").Router();
 const auth = require("../controllers/auth.controller");
 const authMiddleware = require("../middlewares/authMiddleware");
 const checkRole = require("../middlewares/roleMiddleware");
+const validate = require("../middlewares/validate");
+const { registerValidation, loginValidation, changePasswordValidation } = require("../validators/authValidator");
 
 // public
-router.post("/register", auth.register);
-router.post("/login", auth.login);
-router.post("/change-password", authMiddleware, auth.changePassword);
+router.post("/register", registerValidation, validate, auth.register);
+router.post("/login", loginValidation, validate, auth.login);
+router.post("/change-password", authMiddleware, changePasswordValidation, validate, auth.changePassword);
 router.post('/logout', authMiddleware, auth.logout);
 
 // protected

@@ -14,9 +14,29 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },
+    mobile: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    departmentId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    designationId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    managerId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    teamId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     tableName: "users",
@@ -32,6 +52,26 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Company, {
       foreignKey: "userId",
       as: "companies"
+    });
+    User.belongsTo(models.Department, {
+      foreignKey: "departmentId",
+      as: "department"
+    });
+    User.belongsTo(models.Designation, {
+      foreignKey: "designationId",
+      as: "designation"
+    });
+    User.belongsTo(models.User, {
+      foreignKey: "managerId",
+      as: "manager"
+    });
+    User.hasMany(models.User, {
+      foreignKey: "managerId",
+      as: "subordinates"
+    });
+    User.belongsTo(models.Team, {
+      foreignKey: "teamId",
+      as: "team"
     });
   };
 

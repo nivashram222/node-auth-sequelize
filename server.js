@@ -9,6 +9,8 @@ require("./models/user");
 
 const authRoutes = require("./routes/user.js");
 const companyRoutes = require("./routes/company.js");
+const adminRoutes = require("./routes/admin.js");
+const teamRoutes = require("./routes/team.js");
 
 const app = express();
 
@@ -27,6 +29,8 @@ app.use(express.json());
 */
 app.use("/api/auth", authRoutes);
 app.use("/api/companies", companyRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/teams", teamRoutes);
 
 /*
 |--------------------------------------------------------------------------
